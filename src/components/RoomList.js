@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import './RoomList.css';
 
 class RoomList extends Component {
     constructor(props) {
@@ -24,8 +25,8 @@ class RoomList extends Component {
         return (
             <div>
                 <ul>
-                    {this.state.rooms.map((name) =>
-                        <li key={name.toString()}>{this.state.rooms.name}</li>)}    
+                    {this.state.rooms.map((room, index) =>
+                        <li id={room.toString()}>{this.state.rooms[index].name}</li>)}    
                 </ul>
 
             </div>

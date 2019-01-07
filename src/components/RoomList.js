@@ -24,8 +24,8 @@ class RoomList extends Component {
         return (
             <div>
                 <ul>
-                    {this.state.rooms.map((name, index) =>
-                        <li key={index}>{this.state.rooms.name}</li>)}    
+                    {this.state.rooms.map((name) =>
+                        <li key={name.toString()}>{this.state.rooms.name}</li>)}    
                 </ul>
 
             </div>

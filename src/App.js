@@ -4,7 +4,7 @@ import './App.css';
 
 import * as firebase from 'firebase';
 
-// Initialize Firebase
+
 var config = {
   apiKey: "AIzaSyAb1YIu-Nl1s9WIJgodYWFAv2FuZOwgHHo",
   authDomain: "chat-app-98360.firebaseapp.com",
@@ -20,7 +20,7 @@ class App extends Component {
     return (
       <div className="App">
         <h1>Chat App</h1>
-        <RoomList />
+        <RoomList firebase= {firebase}/>
       </div>
     );
   }

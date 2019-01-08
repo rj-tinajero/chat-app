@@ -55,7 +55,7 @@ class RoomList extends Component {
             <div>
                 <ul>
                     {this.state.rooms.map((room, index) =>
-                        <li id={room.toString()}>{this.state.rooms[index].name}</li>)}    
+                        <li key={index}>{this.state.rooms[index].name}</li>)}    
                 </ul>
                 <button onClick={this.switchPopup.bind(this)}>
                     New Room

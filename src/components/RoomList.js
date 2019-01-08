@@ -1,11 +1,28 @@
 import React, { Component } from 'react';
 import './RoomList.css';
 
+class Popup extends Component {
+  
+    render() {
+        return (
+            <div>
+                <form>
+                    <h3>Create new room</h3>
+                    <textarea placeholder="Enter a room name"></textarea>
+                    <button>Submit</button>
+        
+                </form>
+            </div>
+        );
+    }
+}
+
 class RoomList extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            rooms: []
+            rooms: [],
+            popup: false
         };
 
         this.roomsRef = this.props.firebase.database().ref('rooms');
@@ -19,16 +36,31 @@ class RoomList extends Component {
         });
     }
 
-    
+    switchPopup() {
+        this.setState({popup: !this.state.popup})
+    }
+
+    createRoom(e){
+        this.roomsRef.push({
+            name: e.newRoomName
+        });
+    }
 
     render() {
+        let popupComponent;
+        if (this.state.popup) {
+            popupComponent = (<Popup createRoom={(e) => this.createRoom(e)}/>);
+        }
         return (
             <div>
                 <ul>
                     {this.state.rooms.map((room, index) =>
-                        <li id={room.toString()}>{this.state.rooms[index].name}</li>)}    
+                        <li key={index}>{this.state.rooms[index].name}</li>)}    
                 </ul>
-
+                <button onClick={this.switchPopup.bind(this)}>
+                    New Room
+                </button>
+                {popupComponent}
             </div>
         );
     }

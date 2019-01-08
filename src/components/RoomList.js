@@ -1,21 +1,7 @@
 import React, { Component } from 'react';
 import './RoomList.css';
 
-class Popup extends Component {
-  
-    render() {
-        return (
-            <div>
-                <form>
-                    <h3>Create new room</h3>
-                    <textarea placeholder="Enter a room name"></textarea>
-                    <button>Submit</button>
-        
-                </form>
-            </div>
-        );
-    }
-}
+
 
 class RoomList extends Component {
     constructor(props) {
@@ -47,10 +33,7 @@ class RoomList extends Component {
     }
 
     render() {
-        let popupComponent;
-        if (this.state.popup) {
-            popupComponent = (<Popup createRoom={(e) => this.createRoom(e)}/>);
-        }
+        
         return (
             <div>
                 <ul>
@@ -60,8 +43,22 @@ class RoomList extends Component {
                 <button onClick={this.switchPopup.bind(this)}>
                     New Room
                 </button>
-                {popupComponent}
+                
+            {this.state.popup === true ? (() => {
+                if (this.state.popup === true) {
+                  return  <form>
+                            <h3>Create new room</h3>
+                            <textarea placeholder="Enter a room name"></textarea>
+                            <button>Submit</button>
+                          </form>;
+                } })() 
+                : null
+            } 
+                
             </div>
+            
+                
+            
         );
     }
 

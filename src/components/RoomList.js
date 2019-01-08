@@ -28,7 +28,7 @@ class RoomList extends Component {
 
     createRoom(e){
         this.roomsRef.push({
-            name: e.newRoomName
+            name: e
         });
     }
 
@@ -48,8 +48,8 @@ class RoomList extends Component {
                 if (this.state.popup === true) {
                   return  <form>
                             <h3>Create new room</h3>
-                            <textarea placeholder="Enter a room name"></textarea>
-                            <button>Submit</button>
+                            <input type="text" placeholder="Enter a room name"></input>
+                            <input type="submit" value="Submit"></input>
                           </form>;
                 } })() 
                 : null

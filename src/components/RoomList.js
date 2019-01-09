@@ -8,6 +8,7 @@ class RoomList extends Component {
         super(props);
         this.state = {
             rooms: [],
+            newRoomName: '',
             popup: false
         };
 
@@ -26,10 +27,14 @@ class RoomList extends Component {
         this.setState({popup: !this.state.popup})
     }
 
-    createRoom(e){
+    createRoom(){
         this.roomsRef.push({
-            name: e
+            name: this.state.newRoomName
         });
+    }
+
+    handleChange(event) {
+        this.setState({newRoomName: event.target.value})
     }
 
     render() {
@@ -46,9 +51,9 @@ class RoomList extends Component {
                 
             {this.state.popup === true ? (() => {
                 if (this.state.popup === true) {
-                  return  <form>
+                  return  <form onSubmit={this.createRoom}>
                             <h3>Create new room</h3>
-                            <input type="text" placeholder="Enter a room name"></input>
+                            <input type="text" placeholder="Enter a room name" onChange={this.handleChange} value={this.state.newRoomName}></input>
                             <input type="submit" value="Submit"></input>
                           </form>;
                 } })() 

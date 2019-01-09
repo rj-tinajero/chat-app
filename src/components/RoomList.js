@@ -54,9 +54,9 @@ class RoomList extends Component {
                 
             {this.state.popup === true ? (() => {
                 if (this.state.popup === true) {
-                  return  <form onSubmit={this.createRoom}>
+                  return  <form onSubmit={this.createRoom.bind(this)}>
                             <h3>Create new room</h3>
-                            <input type="text" placeholder="Enter a room name" onChange={this.handleChange} value={this.state.newRoomName}></input>
+                            <input type="text" placeholder="Enter a room name" onChange={this.handleChange.bind(this)} value={this.state.newRoomName}></input>
                             <input type="submit" value="Submit"></input>
                           </form>;
                 } })() 

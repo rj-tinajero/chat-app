@@ -13,6 +13,8 @@ class RoomList extends Component {
         };
 
         this.roomsRef = this.props.firebase.database().ref('rooms');
+        this.handleChange = this.handleChange.bind(this);
+        
     }
 
     componentDidMount() {
@@ -27,7 +29,8 @@ class RoomList extends Component {
         this.setState({popup: !this.state.popup})
     }
 
-    createRoom(){
+    createRoom(event){
+        event.preventDefault();
         this.roomsRef.push({
             name: this.state.newRoomName
         });

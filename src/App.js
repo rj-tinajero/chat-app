@@ -40,7 +40,7 @@ class App extends Component {
       <div>
         <div className="App">
           <h1>Chat App</h1>
-          <User firebase={firebase}/>
+          <User firebase={firebase} userName={this.props.user.displayName}/>
           <RoomList firebase= {firebase} setActiveRoom={this.setActiveRoom} activeRoom={this.state.activeRoom}/>
         </div>
         <div className="msg-list">

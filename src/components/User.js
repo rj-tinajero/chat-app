@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 class User extends Component {
     componentDidMount() {
         this.props.firebase.auth().onAuthStateChanged( user => {
-            this.props.setUser(user);
+            this.props.setUser(user.email);
           });
     }
 
@@ -19,7 +19,7 @@ class User extends Component {
     render() {
         return (
             <div>
-                <h2>{this.props.user}</h2>
+                <h4>{this.props.user}</h4>
                 <button onClick={this.signInWithPopup.bind(this)}>Sign In</button>
                 <button onClick={this.signOut.bind(this)}>Sign Out</button>
             </div>

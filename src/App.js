@@ -35,7 +35,6 @@ class App extends Component {
 
   setUser(newName) {
     this.setState({user: newName})
-    console.log(this.state.user);
   }
 
   render() {

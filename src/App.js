@@ -41,7 +41,7 @@ class App extends Component {
       <div>
         <div className="App">
           <h1>Chat App</h1>
-          <User firebase={firebase} displayName={this.state.user} onChange={this.setUser}/>
+          <User firebase={firebase}  setUser={this.setUser}/>
           <RoomList firebase= {firebase} setActiveRoom={this.setActiveRoom} activeRoom={this.state.activeRoom}/>
         </div>
         <div className="msg-list">

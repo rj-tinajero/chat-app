@@ -4,41 +4,43 @@ class MessageList extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            messages: []
+            messages: [],
+            newMsg: ''
         };
 
         this.messagesRef = this.props.firebase.database().ref('messages');
-        
+        this.createMsg = this.createMsg.bind(this);
+        this.handleChange = this.handleChange.bind(this);
     }
 
     componentDidMount() {
         this.messagesRef.on('child_added', snapshot => {
             const message = snapshot.val();
+            console.log(message);
             message.key = snapshot.key;
-            this.setState({ messages: this.state.messages.concat( message )});
+            this.setState({ messages: [...this.state.messages, message]});
         }); 
     }
 
     displayTime() {
         this.messagesRef.push({
-            sentAt: this.props.firebase.database.ServerValue.TIMPSTAMP
+            sentAt: this.props.firebase.database.ServerValue.TIMESTAMP
         });
     }
 
-    // componentDidUpdate(prevProps){
-    //     if (prevProps.activeRoom !== this.props.activeRoom) {
-    //         console.log("lol", this.props.activeRoom);
-    //         this.setState({messages: []})
-    //         this.messagesRef.orderByChild("roomId").equalTo(this.props.activeRoom.key).on('child_added', snapshot => {
-    //             console.log(snapshot);
-    //             const message = snapshot.val();
-    //             console.log(message);
-    //             message.key = snapshot.key;
-    //             this.setState({ messages: this.state.messages.concat( message )});
-    //         });
-    //     }
+    createMsg(event){
+        event.preventDefault();
+        this.messagesRef.push({
+            content: this.state.newMsg, 
+            roomId: this.props.activeRoom.key,
+            username: this.props.user,
+            sentAt: this.props.firebase.database.ServerValue.TIMESTAMP
+        });
+    }
 
-    // }
+    handleChange(event) {
+        this.setState({newMsg: event.target.value})
+    }
 
     render() {
         if (!this.props.activeRoom) {
@@ -49,6 +51,13 @@ class MessageList extends Component {
                 {this.state.messages.filter(message => message.roomId == this.props.activeRoom.key).map((message, index) => (
                     <div key={index}><span>{message.username}</span><span>{message.content}</span><span>{message.sentAt}</span></div>
                 ))}
+
+                <footer>
+                    <form onSubmit={this.createMsg.bind(this)}>
+                        <input type="text" placeholder="Write your message here..." value={this.state.newMsg} onChange={this.handleChange.bind(this)}></input>
+                        <input type="submit" value="Send" ></input>
+                    </form>
+                </footer>
             </div>
         );
     }

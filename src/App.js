@@ -5,7 +5,6 @@ import './App.css';
 
 import * as firebase from 'firebase';
 
-
 var config = {
   apiKey: "AIzaSyAb1YIu-Nl1s9WIJgodYWFAv2FuZOwgHHo",
   authDomain: "chat-app-98360.firebaseapp.com",

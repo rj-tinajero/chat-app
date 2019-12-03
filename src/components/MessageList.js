@@ -25,20 +25,20 @@ class MessageList extends Component {
         });
     }
 
-    // componentDidUpdate(prevProps){
-    //     if (prevProps.activeRoom !== this.props.activeRoom) {
-    //         console.log("lol", this.props.activeRoom);
-    //         this.setState({messages: []})
-    //         this.messagesRef.orderByChild("roomId").equalTo(this.props.activeRoom.key).on('child_added', snapshot => {
-    //             console.log(snapshot);
-    //             const message = snapshot.val();
-    //             console.log(message);
-    //             message.key = snapshot.key;
-    //             this.setState({ messages: this.state.messages.concat( message )});
-    //         });
-    //     }
+    componentDidUpdate(prevProps){
+        if (prevProps.activeRoom !== this.props.activeRoom) {
+            console.log("lol", this.props.activeRoom);
+            this.setState({messages: []})
+            this.messagesRef.orderByChild("roomId").equalTo(this.props.activeRoom.key).on('child_added', snapshot => {
+                console.log(snapshot);
+                const message = snapshot.val();
+                console.log(message);
+                message.key = snapshot.key;
+                this.setState({ messages: this.state.messages.concat( message )});
+            });
+        }
 
-    // }
+    }
 
     render() {
         if (!this.props.activeRoom) {

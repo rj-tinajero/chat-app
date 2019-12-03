@@ -45,9 +45,10 @@ class RoomList extends Component {
         
         return (
             <div>
+                <h3>Current Room: {this.props.activeRoom && this.props.activeRoom.name}</h3>
                 <ul>
                     {this.state.rooms.map((room, index) =>
-                        <li key={index}>{this.state.rooms[index].name}</li>)}    
+                        <li onClick={() => this.props.setActiveRoom(room)} key={index}>{this.state.rooms[index].name}</li>)}    
                 </ul>
                 <button onClick={this.switchPopup.bind(this)}>
                     New Room

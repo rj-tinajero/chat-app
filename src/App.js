@@ -5,7 +5,7 @@ import User from './components/User';
 import './App.css';
 import * as firebase from 'firebase';
 
-var config = {
+const config = {
   apiKey: "AIzaSyAb1YIu-Nl1s9WIJgodYWFAv2FuZOwgHHo",
   authDomain: "chat-app-98360.firebaseapp.com",
   databaseURL: "https://chat-app-98360.firebaseio.com",
@@ -42,7 +42,7 @@ class App extends Component {
         <div className="App">
           <h1>Chat App</h1>
           <User firebase={firebase} user={this.state.user} setUser={this.setUser}/>
-          <RoomList firebase= {firebase} setActiveRoom={this.setActiveRoom} activeRoom={this.state.activeRoom}/>
+          <RoomList firebase={firebase} setActiveRoom={this.setActiveRoom} activeRoom={this.state.activeRoom}/>
         </div>
         <div className="msg-list">
           <MessageList firebase= {firebase} activeRoom={this.state.activeRoom} user={this.state.user}/>

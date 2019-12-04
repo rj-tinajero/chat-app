@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import './MessageList.css';
 
 class MessageList extends Component {
     constructor(props) {
@@ -28,21 +29,6 @@ class MessageList extends Component {
         });
     }
 
-<<<<<<< HEAD
-    componentDidUpdate(prevProps){
-        if (prevProps.activeRoom !== this.props.activeRoom) {
-            console.log("lol", this.props.activeRoom);
-            this.setState({messages: []})
-            this.messagesRef.orderByChild("roomId").equalTo(this.props.activeRoom.key).on('child_added', snapshot => {
-                console.log(snapshot);
-                const message = snapshot.val();
-                console.log(message);
-                message.key = snapshot.key;
-                this.setState({ messages: this.state.messages.concat( message )});
-            });
-        }
-
-=======
     createMsg(event){
         event.preventDefault();
         this.messagesRef.push({
@@ -51,11 +37,11 @@ class MessageList extends Component {
             username: this.props.user,
             sentAt: this.props.firebase.database.ServerValue.TIMESTAMP
         });
+        this.setState({ newMsg: '' });
     }
 
     handleChange(event) {
         this.setState({newMsg: event.target.value})
->>>>>>> assignment-6-send
     }
 
     render() {

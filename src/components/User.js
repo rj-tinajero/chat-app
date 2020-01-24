@@ -21,8 +21,8 @@ class User extends Component {
         return (
             <div>
                 {!this.props.user ? null : <h5>User: {this.props.user}</h5>}
-                <button onClick={this.signInWithPopup.bind(this)}>Sign In</button>
-                <button onClick={this.signOut.bind(this)}>Sign Out</button>
+                {this.props.user ? <button onClick={this.signOut.bind(this)}>Sign Out</button> : <button onClick={this.signInWithPopup.bind(this)}>Sign In</button>}
+                
             </div>
         );
     }

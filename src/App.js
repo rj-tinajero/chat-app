@@ -42,10 +42,10 @@ class App extends Component {
         <div className="App">
           <h1>Chat App</h1>
           <User firebase={firebase} user={this.state.user} setUser={this.setUser}/>
-          <RoomList firebase={firebase} setActiveRoom={this.setActiveRoom} activeRoom={this.state.activeRoom}/>
+         {!this.state.user ? null : <RoomList firebase={firebase} setActiveRoom={this.setActiveRoom} activeRoom={this.state.activeRoom}/>} 
         </div>
         <div className="msg-list">
-          <MessageList firebase= {firebase} activeRoom={this.state.activeRoom} user={this.state.user}/>
+          {!this.state.user ? null : <MessageList firebase= {firebase} activeRoom={this.state.activeRoom} user={this.state.user}/>}
         </div>
       </div>
     );
